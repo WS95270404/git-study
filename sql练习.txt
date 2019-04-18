@@ -1,0 +1,51 @@
+﻿group by 的 case when 练习
+SELECT * FROM `test`;
+//问题复现
+SELECT
+	*,(CASE   WHEN status <5 THEN 0 WHEN status>5 THEN 1 ELSE 2 END ) aa
+FROM
+	`test`
+ORDER BY
+	CASE STATUS
+WHEN STATUS < 5 THEN
+	0
+WHEN STATUS > 5 THEN
+	1
+ELSE
+	2
+END DESC;
+//问题解决
+SELECT
+	*,(CASE   WHEN status <5 THEN 0 WHEN status>5 THEN 1 ELSE 2 END ) aa
+FROM
+	`test`
+ORDER BY
+	CASE 
+WHEN STATUS < 5 THEN
+	0
+WHEN STATUS > 5 THEN
+	1
+ELSE
+	2
+END DESC;
+
+select *,(CASE   WHEN status <5 THEN 0 WHEN status>5 THEN 1 ELSE 2 END ) aa from test;
+
+select * from test WHERE status <5;
+
+
+limit 练习
+
+select * from test;
+
+select * from test limit 1;
+
+select * from test limit 2;
+
+select * from test LIMIT 1,2;
+
+#假设现在 页面每页两条数据  一共五页 获取第三页数据
+#limit 第二个数据:获取几条数据
+#			 第一个数据:会从这个数的下一条数据开始获取数据   先-1,因为是第三页 要乘以3
+#得到公式 limit (页数-1)*每页数据大小,每页数据大小
+SELECT * from test limit 4,2
